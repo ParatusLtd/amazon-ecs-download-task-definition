@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const aws = require('aws-sdk');
-const fs = require('fs/promises');
+const fs = require('fs');
 const tmp = require('tmp');
 
 async function run() {
@@ -20,8 +20,7 @@ async function run() {
             throw(error);
         }
         const serializedTaskDefinition = JSON.stringify(describeTaskDefinitionResponse.taskDefinition, undefined, 4);
-        const file = await fs.open(temporaryFile.name);
-        await file.writeFile(serializedTaskDefinition);
+        fs.writeSync(temporaryFile.fd, serializedTaskDefinition);
     } catch (error) {
         core.setFailed(error.message);
         core.debug(error.stack);
