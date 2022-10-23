@@ -1,0 +1,12 @@
+name: 'Amazon ECS Download Task Definition'
+description: 'Downloads a task definition from Amazon ECS'
+inputs:
+  task-definition-family:
+    description: 'The name of the task definition family'
+    required: true
+outputs:
+  task-definition:
+    description: 'The path to the downloaded ECS task definition file'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

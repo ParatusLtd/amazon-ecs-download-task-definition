@@ -1,0 +1,25 @@
+{
+  "name": "amazon-ecs-download-task-definition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParatusLtd/amazon-ecs-download-task-definition.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ParatusLtd/amazon-ecs-download-task-definition/issues"
+  },
+  "homepage": "https://github.com/ParatusLtd/amazon-ecs-download-task-definition#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "aws-sdk": "^2.1238.0",
+    "tmp": "^0.2.1"
+  }
+}
