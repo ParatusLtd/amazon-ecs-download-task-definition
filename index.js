@@ -11,7 +11,7 @@ async function run() {
 
         let describeTaskDefinitionResponse
         try {
-            describeTaskDefinitionResponse = await ecs.describeTaskDefinition({family: taskDefinitionFamily}).promise();
+            describeTaskDefinitionResponse = await ecs.describeTaskDefinition({taskDefinition: taskDefinitionFamily}).promise();
         } catch (error) {
             core.setFailed("Failed to describe task definition in ECS: " + error.message);
             core.debug("Task definition family:");
