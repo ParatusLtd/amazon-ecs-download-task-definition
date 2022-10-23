@@ -21,6 +21,7 @@ async function run() {
         }
         const serializedTaskDefinition = JSON.stringify(describeTaskDefinitionResponse.taskDefinition, undefined, 4);
         fs.writeSync(temporaryFile.fd, serializedTaskDefinition);
+        core.setOutput("task-definition", temporaryFile.name);
     } catch (error) {
         core.setFailed(error.message);
         core.debug(error.stack);
