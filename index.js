@@ -6,7 +6,11 @@ const tmp = require('tmp');
 async function run() {
     try {
         const taskDefinitionFamily = core.getInput('task-definition-family');
-        const temporaryFile = tmp.fileSync({keep: true});
+        const temporaryFile = tmp.fileSync({
+            tmpdir: process.env.RUNNER_TEMP,
+            keep: true,
+            postfix: taskDefinitionFamily + ".json"
+        });
         const ecs = new aws.ECS();
 
         let describeTaskDefinitionResponse
@@ -19,7 +23,7 @@ async function run() {
             core.debug(error.stack);
             throw(error);
         }
-        const serializedTaskDefinition = JSON.stringify(describeTaskDefinitionResponse.taskDefinition, undefined, 4);
+        const serializedTaskDefinition = JSON.stringify(describeTaskDefinitionResponse.taskDefinition, undefined, 2);
         fs.writeSync(temporaryFile.fd, serializedTaskDefinition);
         core.setOutput("task-definition", temporaryFile.name);
     } catch (error) {
